@@ -22,7 +22,7 @@ It provides enhanced radio button group functionality for Filament, allowing for
 Install via Composer:
 
 ```bash
-composer require keytactic-io/filament-radio-group
+composer require keytactic/filament-radio-group
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ The filament-radio-group package provides a `RadioGroup` class, which you can us
 ```php
 use keytactic\Filament\RadioGroup\RadioGroup;
 
-$radioGroup = RadioGroup::make('radio_group')
+RadioGroup::make('radio_group')
     ->options([
         'option_1' => 'Option 1',
         'option_2' => 'Option 2',
@@ -43,18 +43,28 @@ $radioGroup = RadioGroup::make('radio_group')
         'option_2' => 'Description for option 2',
         'option_3' => 'Description for option 3',
     ])
-    ->icons([
-        'option_1' => 'lucide-fish',
-        'option_2' => 'lucide-fish',
-        'option_3' => 'lucide-fish',
+    ->icons([ // heroicons
+        'option_1' => 'clipboard-document-check',
+        'option_2' => 'clipboard-document-check',
+        'option_3' => 'clipboard-document-check',
     ])
-    ->iconsColor([
+    ->iconsColor([ // icon outline color
         'option_1' => 'text-primary-600',
         'option_2' => 'text-success-600',
         'option_3' => 'text-danger-600',
     ])
+    ->borderColors([ // selected border color
+        'option_1' => 'border-blue-500 dark:border-blue-400',
+        'option_2' => 'border-success-500 dark:border-success-400',
+    ])
+    ->iconSize('w-8 h-8') // Custom icon size
+    ->iconBackgroundRadius('rounded-full') // Custom icon background radius
+    ->iconBackgroundColors([
+        'option_1' => 'bg-blue-50 dark:bg-blue-800/30', // Custom background color for option 1
+        'option_2' => 'bg-green-50 dark:bg-green-800/30', // Custom background color for option 2
+    ])
     ->columns(3)
-    ->required();
+    ->required(),
 ```
 
 In the example above, `RadioGroup::make('radio_group')` creates a new radio button group with the name 'radio_group'.
