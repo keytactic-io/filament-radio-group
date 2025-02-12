@@ -1,53 +1,57 @@
 {
-    "name": "astersnake/filament-radio-group",
+    "name": "keytactic-io/filament-radio-group",
     "description": "A radio group field for Filament with support for icons and custom colors.",
     "keywords": [
-        "astersnake",
+        "filament",
         "laravel",
         "filament-radio-group"
     ],
-    "homepage": "https://github.com/astersnake/filament-radio-group",
+    "homepage": "https://github.com/keytactic-io/filament-radio-group",
     "license": "MIT",
     "authors": [
         {
             "name": "astersnake",
             "email": "astersnake@gmail.com",
             "role": "Developer"
-        }
+        },
+        {
+            "name": "Mo Hassan",
+            "email": "mo@keytactic.net",
+            "role": "Maintainer"
+        }        
     ],
     "require": {
-        "php": "^8.0",
-        "filament/filament": "^2.0",
+        "php": "^8.2",
+        "filament/filament": "^3.0",
         "spatie/laravel-package-tools": "^1.13.5",
-        "illuminate/contracts": "^9.0|^10.0"
+        "illuminate/contracts": "^10.0|^11.0"
     },
     "require-dev": {
-        "nunomaduro/collision": "^6.0",
-        "nunomaduro/larastan": "^2.0.1",
-        "orchestra/testbench": "^7.0",
-        "pestphp/pest": "^1.21",
-        "pestphp/pest-plugin-laravel": "^1.1",
-        "pestphp/pest-plugin-livewire": "^1.0",
-        "pestphp/pest-plugin-parallel": "^0.3",
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
-        "phpunit/phpunit": "^9.5",
-        "spatie/laravel-ray": "^1.26"
+        "nunomaduro/collision": "^7.0",
+        "nunomaduro/larastan": "^2.0",
+        "orchestra/testbench": "^8.0",
+        "pestphp/pest": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.0",
+        "pestphp/pest-plugin-livewire": "^2.0",
+        "phpstan/extension-installer": "^1.2",
+        "phpstan/phpstan-deprecation-rules": "^1.1",
+        "phpstan/phpstan-phpunit": "^1.2",
+        "phpunit/phpunit": "^10.5",
+        "spatie/laravel-ray": "^1.36"
     },
     "autoload": {
         "psr-4": {
-            "Astersnake\\RadioGroup\\": "src",
-            "Astersnake\\RadioGroup\\Database\\Factories\\": "database/factories"
+            "Keytactic\\RadioGroup\\": "src",
+            "Keytactic\\RadioGroup\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Astersnake\\RadioGroup\\Tests\\": "tests"
+            "Keytactic\\RadioGroup\\Tests\\": "tests"
         }
     },
     "scripts": {
-        "test:pest": "vendor/bin/pest --parallel",
+        "test:pest": "vendor/bin/pest",
         "test:phpstan": "vendor/bin/phpstan analyse",
         "test": [
             "@test:pest",
@@ -65,13 +69,13 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Astersnake\\RadioGroup\\RadioGroupServiceProvider"
+                "Ketyactic\\RadioGroup\\RadioGroupServiceProvider"
             ],
             "aliases": {
-                "RadioGroup": "Astersnake\\RadioGroup\\Facades\\RadioGroup"
+                "RadioGroup": "Keytactic\\RadioGroup\\Facades\\RadioGroup"
             }
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

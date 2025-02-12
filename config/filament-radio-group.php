@@ -1,6 +1,6 @@
 <?php
 
-// config for Astersnake/RadioGroup
+// config for Keytactic/RadioGroup
 return [
 
 ];

@@ -1,12 +1,12 @@
 <?php
 
-namespace Astersnake\RadioGroup\Tests;
+namespace Keytactic\RadioGroup\Tests;
 
 use Filament\FilamentServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Astersnake\RadioGroup\RadioGroupServiceProvider;
+use Keytactic\RadioGroup\RadioGroupServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -15,7 +15,7 @@ class TestCase extends Orchestra
         parent::setUp();
 
         Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Astersnake\\RadioGroup\\Database\\Factories\\'.class_basename($modelName).'Factory'
+            fn (string $modelName) => 'Keytactic\\RadioGroup\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
     }
 

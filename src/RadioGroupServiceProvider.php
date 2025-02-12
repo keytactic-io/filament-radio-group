@@ -1,6 +1,6 @@
 <?php
 
-namespace Astersnake\RadioGroup;
+namespace Keytactic\RadioGroup;
 
 use Composer\InstalledVersions;
 use Filament\PluginServiceProvider;
@@ -16,7 +16,7 @@ class RadioGroupServiceProvider extends PluginServiceProvider
     public function configurePackage(Package $package): void
     {
         try {
-            static::$version = InstalledVersions::getPrettyVersion('astersnake/filament-radio-group');
+            static::$version = InstalledVersions::getPrettyVersion('keytactic/filament-radio-group');
         } catch (OutOfBoundsException $e) {
         }
 

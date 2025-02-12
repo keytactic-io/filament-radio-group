@@ -1,6 +1,6 @@
 <?php
 
-namespace Astersnake\RadioGroup;
+namespace Keytactic\RadioGroup;
 
 use Closure;
 use Filament\Forms\Components\Radio;
