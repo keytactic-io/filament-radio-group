@@ -41,8 +41,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Keytactic\\RadioGroup\\": "src",
-            "Keytactic\\RadioGroup\\Database\\Factories\\": "database/factories"
+            "Keytactic\\RadioGroup\\": "src"
         }
     },
     "autoload-dev": {
@@ -52,7 +51,7 @@
     },
     "scripts": {
         "test:pest": "vendor/bin/pest",
-        "test:phpstan": "vendor/bin/phpstan analyse",
+        "test:phpstan": "vendor/bin/phpstan analyse src tests",
         "test": [
             "@test:pest",
             "@test:phpstan"

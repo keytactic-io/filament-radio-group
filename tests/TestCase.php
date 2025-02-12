@@ -3,27 +3,21 @@
 namespace Keytactic\RadioGroup\Tests;
 
 use Filament\FilamentServiceProvider;
-use Illuminate\Database\Eloquent\Factories\Factory;
+use Filament\Forms\FormsServiceProvider;
+use Filament\Support\SupportServiceProvider;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Keytactic\RadioGroup\RadioGroupServiceProvider;
 
 class TestCase extends Orchestra
 {
-    protected function setUp(): void
-    {
-        parent::setUp();
-
-        Factory::guessFactoryNamesUsing(
-            fn (string $modelName) => 'Keytactic\\RadioGroup\\Database\\Factories\\'.class_basename($modelName).'Factory'
-        );
-    }
-
     protected function getPackageProviders($app)
     {
         return [
             LivewireServiceProvider::class,
             FilamentServiceProvider::class,
+            FormsServiceProvider::class,
+            SupportServiceProvider::class,
             RadioGroupServiceProvider::class,
         ];
     }
@@ -31,10 +25,5 @@ class TestCase extends Orchestra
     public function getEnvironmentSetUp($app)
     {
         config()->set('database.default', 'testing');
-
-        /*
-        $migration = include __DIR__.'/../database/migrations/create_filament-radio-group_table.php.stub';
-        $migration->up();
-        */
     }
 }
