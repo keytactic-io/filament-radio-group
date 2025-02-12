@@ -1,5 +1,5 @@
 {
-    "name": "keytactic-io/filament-radio-group",
+    "name": "keytactic/filament-radio-group",
     "description": "A radio group field for Filament with support for icons and custom colors.",
     "keywords": [
         "filament",
