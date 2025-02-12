@@ -69,7 +69,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Ketyactic\\RadioGroup\\RadioGroupServiceProvider"
+                "Keytactic\\RadioGroup\\RadioGroupServiceProvider"
             ],
             "aliases": {
                 "RadioGroup": "Keytactic\\RadioGroup\\Facades\\RadioGroup"
