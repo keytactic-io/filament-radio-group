@@ -1,80 +1,69 @@
-<x-dynamic-component
-    :component="$getFieldWrapperView()"
-    :id="$getId()"
-    :label="$getLabel()"
-    :label-sr-only="$isLabelHidden()"
-    :helper-text="$getHelperText()"
-    :hint="$getHint()"
-    :hint-icon="$getHintIcon()"
-    :required="$isRequired()"
-    :state-path="$getStatePath()"
->
-    @if ($isInline())
-        <x-slot name="labelSuffix">
-            @endif
-            <x-filament-support::grid
-                :default="$getColumns('default')"
-                :sm="$getColumns('sm')"
-                :md="$getColumns('md')"
-                :lg="$getColumns('lg')"
-                :xl="$getColumns('xl')"
-                :two-xl="$getColumns('2xl')"
-                :is-grid="! $isInline()"
-                :attributes="$attributes->merge($getExtraAttributes())->class([
-            'filament-forms-radio-component',
-            'flex flex-wrap gap-3' => $isInline(),
-            'gap-2' => ! $isInline(),
-        ])"
+<div @class([
+    'grid gap-3',
+    match($getColumns()) {
+        2 => 'sm:grid-cols-2',
+        3 => 'sm:grid-cols-3',
+        4 => 'sm:grid-cols-4',
+        default => null,
+    },
+])>
+    @foreach ($getOptions() as $value => $label)
+        <div class="relative" wire:key="{{ $getId() }}-{{ $value }}">
+            <label
+                for="{{ $getId() }}-{{ $value }}"
+                wire:click="$set('{{ $getStatePath() }}', '{{ $value }}')"
+                @class([
+                    'relative flex cursor-pointer rounded-xl border-2 p-4 shadow-sm',
+                    $getBorderColor($value, $isOptionSelected($value)),
+                ])
             >
-                @php
-                    $isDisabled = $isDisabled();
-                @endphp
-
-                @foreach ($getOptions() as $value => $label)
-                    <div @class([
-                'gap-3' => ! $isInline(),
-                'gap-2' => $isInline(),
-            ])>
-                        <div class="flex items-center">
-                            <label for="{{ $getId() }}-{{ $value }}" class="w-full cursor-pointer">
-                                <input
-                                    name="{{ $getId() }}"
-                                    id="{{ $getId() }}-{{ $value }}"
-                                    type="radio"
-                                    value="{{ $value }}"
-                                    dusk="filament.forms.{{ $getStatePath() }}"
-                                {{ $applyStateBindingModifiers('wire:model') }}="{{ $getStatePath() }}"
-                                {{ $getExtraInputAttributeBag()->class([
-                                    'hidden peer',
-                                ]) }}
-                                {!! ($isDisabled || $isOptionDisabled($value, $label)) ? 'disabled' : null !!}
-                                />
-                                <div @class([
-                            'relative flex items-center cursor-pointer rounded-lg border bg-white p-4 focus:outline-none peer-checked:border-primary-600 peer-checked:border-2 transition duration-150 ease-in-out',
-                            'text-gray-800' => ! $errors->has($getStatePath()),
-                            'dark:bg-gray-800 dark:p-4 dark:peer-checked:border-primary-600 dark:peer-checked:border-2' => (! $errors->has($getStatePath())) && config('forms.dark_mode'),
-                            'text-danger-600' => $errors->has($getStatePath()),
+                <input
+                    type="radio"
+                    name="{{ $getId() }}"
+                    id="{{ $getId() }}-{{ $value }}"
+                    value="{{ $value }}"
+                    @checked($isOptionSelected($value))
+                    wire:model.defer="{{ $getStatePath() }}"
+                    class="sr-only"
+                    {{ $isOptionDisabled($value, $label) ? 'disabled' : '' }}
+                />
+                
+                <div class="flex w-full">
+                    @if ($icon = $getIcon($value))
+                        <div @class([
+                            'flex shrink-0 items-center justify-center p-2',
+                            $getIconBackgroundColor($value), // Apply custom background color
+                            $getIconBackgroundRadius(), // Apply custom border radius
                         ])>
-                                    @if ($icon = $getIcon($value))
-                                        <div class="h-full mr-4 bg-gray-50 rounded-xl p-5 dark:bg-gray-800">
-                                            <x-dynamic-component :component="$icon" :class="$getIconClasses($value)"/>
-                                        </div>
-                                    @endif
-                                    <div class="block">
-                                        <div class="w-full text-md font-semibold dark:text-white">
-                                            {{ $label }}
-                                        </div>
-                                        <div class="w-full text-xs text-muted dark:text-gray-400 leading-tight">
-                                            {{ $getDescription($value) }}
-                                        </div>
-                                    </div>
-                                </div>
-                            </label>
+                            <x-dynamic-component 
+                                :component="$icon" 
+                                @class([
+                                    $getIconSize(), // Apply custom icon size
+                                    $getIconColor($value), // Apply custom icon color
+                                ])
+                            />
                         </div>
+                    @endif
+
+                    <div class="ml-4 flex flex-col">
+                        <span class="font-medium text-gray-900 dark:text-gray-100">
+                            {{ $label }}
+                        </span>
+
+                        @if ($description = $getDescription($value))
+                            <span class="text-sm text-gray-500 dark:text-gray-400">
+                                {{ $description }}
+                            </span>
+                        @endif
                     </div>
-                @endforeach
-            </x-filament-support::grid>
-            @if ($isInline())
-        </x-slot>
-    @endif
-</x-dynamic-component>
+                </div>
+            </label>
+
+            @if($isOptionSelected($value))
+                <div class="absolute right-3 top-3 text-primary-600 dark:text-primary-400">
+                    <x-heroicon-m-check-circle class="h-5 w-5" />
+                </div>
+            @endif
+        </div>
+    @endforeach
+</div>
