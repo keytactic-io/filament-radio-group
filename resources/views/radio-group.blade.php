@@ -25,7 +25,7 @@
                     for="{{ $getId() }}-{{ $value }}"
                     wire:click="$set('{{ $getStatePath() }}', '{{ $value }}')"
                     @class([
-                        'relative h-full flex cursor-pointer rounded-xl border p-4 shadow-sm',
+                        'relative h-full flex cursor-pointer rounded-xl border p-4 shadow-sm hover:border-primary-500',
                         $getBorderColor($value, $isOptionSelected($value)),
                     ])
                 >
